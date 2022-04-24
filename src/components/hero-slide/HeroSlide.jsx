@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import SwiperCore, { Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Autoplay } from 'swiper';
 
 import Button, { OutlineButton } from '../button/Button';
 import Modal, { ModalContent } from '../modal/Modal';
@@ -10,6 +10,7 @@ import tmdbApi, { category, movieType } from '../../api/tmdbApi';
 import apiConfig from '../../api/apiConfig';
 
 import './hero-slide.scss';
+
 import { useNavigate } from 'react-router-dom';
 
 const HeroSlide = () => {
@@ -39,7 +40,10 @@ const HeroSlide = () => {
                 grabCursor={true}
                 spaceBetween={0}
                 slidesPerView={1}
-                // autoplay={{ delay: 3000 }}
+                autoplay={{
+                    delay: 3000,
+                    // disableOnInteraction: false,
+                }}
                 loop={true}
             >
                 {

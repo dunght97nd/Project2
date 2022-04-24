@@ -1,7 +1,7 @@
 @use "../../scss/" as *;
 
 .logo {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     font-weight: 600;
     a{
         @include flex(center, unset);
@@ -46,16 +46,19 @@
 
     &__nav {
         @include flex(center, unset);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
 
         & > * ~ * {
             margin-left: 4rem;
         }
 
         li {
-            padding: 5px 0;
+            padding: 6px 0;
             font-weight: 700;
             position: relative;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
 
             &::after {
                 content: "";
@@ -78,7 +81,7 @@
 
         &__left{
             font-weight: 700;
-            font-size: 1.8rem;
+            font-size: 2rem;
         }
 
         @include mobile {

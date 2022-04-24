@@ -9,6 +9,7 @@ import Detail from './pages/details/Detail';
 import Home from './pages/Home';
 import MainLayout from './layout/MainLayout';
 import Login from './pages/login/Login';
+import Register from './pages/login/Register';
 
 // import Config from './config/Config';
 
@@ -32,6 +33,7 @@ function App() {
                     <Route path=":category/:id" element={<Detail />} />
                     <Route path=":category" element={<Catalog />} />
                     <Route path="login" element={<Login />} />
+                    <Route path="register" element={<Register />} />
 
                 </Route>
             </Routes>

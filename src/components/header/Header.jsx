@@ -22,7 +22,8 @@ const headerNav = [
         display: 'TV Series',
         section: 'tv',
         path: '/tv'
-    }
+    },
+
 ];
 
 const Header = () => {
@@ -84,13 +85,13 @@ const Header = () => {
 
                 <ul className="header__nav__left">
                     <li className="header__nav__item">
-                        <Link to="/login">
+                        <Link to="/login" onClick={window.scrollTo(0, 0)}>
                             <i className="bx bx-user"></i>
                         </Link>
                     </li>
                 </ul>
             </div>
-        </div>
+        </div >
     )
 }
 

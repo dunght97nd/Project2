@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PageHeader from '../../components/page-header/PageHeader';
 import './login.scss';
 import bg from '../../assets/footer-bg.jpg';
@@ -8,28 +8,19 @@ import { ErrorMessage } from "@hookform/error-message";
 import { Link } from 'react-router-dom';
 
 
-
-
-
-
-
-const Login = () => {
+const Register = () => {
     // const { register, handleSubmit, formState: { errors } } = useForm();
     const {
         register,
         formState: { errors },
-        handleSubmit
+        handleSubmit,
+        watch
     } = useForm({
         criteriaMode: "all"
     });
+    const password = watch('password');
 
     const onSubmit = (data) => console.log(data);
-
-
-    const [passwordEye, setPasswordEye] = useState(false);
-    const handlePasswordClick = () => {
-        setPasswordEye(!passwordEye);
-    }
 
     return (
         <>
@@ -40,7 +31,7 @@ const Login = () => {
                     <div className="login-content">
 
                         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-                            <h1>Sign In</h1>
+                            <h1>Sign Up</h1>
                             <div className="login-form__input">
                                 <label>
                                     <input
@@ -71,7 +62,34 @@ const Login = () => {
 
                                 <label>
                                     <input
-                                        type={(passwordEye === false) ? 'password' : 'text'}
+
+                                        placeholder="Name"
+                                        className="login-form__input__item"
+                                        {...register("name", {
+                                            required: "This input is required.",
+                                            minLength: {
+                                                value: 6,
+                                                message: "This input must exceed 5 characters"
+                                            },
+                                        })}
+                                    />
+                                    <ErrorMessage
+                                        errors={errors}
+                                        name="name"
+                                        render={({ messages }) => {
+                                            console.log("messages", messages);
+                                            return messages
+                                                ? Object.entries(messages).map(([type, message]) => (
+                                                    <p key={type}>{message}</p>
+                                                ))
+                                                : null;
+                                        }}
+                                    />
+                                </label>
+
+                                <label>
+                                    <input
+                                        type="password"
                                         placeholder="Password"
                                         className="login-form__input__item"
                                         {...register("password", {
@@ -94,36 +112,52 @@ const Login = () => {
                                                 : null;
                                         }}
                                     />
+                                </label>
 
-                                    <div className='login-form__icon'>
-                                        {
-                                            (passwordEye === false) ?
-                                                <i className='bx bx-hide' onClick={handlePasswordClick}></i>
-                                                :
-                                                <i className='bx bx-show-alt' onClick={handlePasswordClick}></i>
-                                        }
-                                    </div>
+                                <label>
+                                    <input
+                                        type="password"
+                                        placeholder="Repeat Password"
+                                        className="login-form__input__item"
+                                        {...register("rePassword", {
+                                            required: "This input is required.",
+                                            validate: (value) =>
+                                                value === password || "The password do not match"
+                                        })}
+                                    />
+                                    <ErrorMessage
+                                        errors={errors}
+                                        name="rePassword"
+                                        render={({ messages }) => {
+                                            console.log("messages", messages);
+                                            return messages
+                                                ? Object.entries(messages).map(([type, message]) => (
+                                                    <p key={type}>{message}</p>
+                                                ))
+                                                : null;
+                                        }}
+                                    />
                                 </label>
                             </div>
                             <button
                                 className="login-form__button__signin"
                                 type="submit"
                             >
-                                Sign In
+                                Sign Up
                             </button>
 
-                            <div className="login-form__orther">
+                            {/* <div className="login-form__orther">
                                 New to Movies?{' '}
                                 <Link to="/register" >
                                     Sign up now
                                 </Link>
-                            </div>
+                            </div> */}
                         </form>
                     </div>
                 </div>
-            </div >
+            </div>
         </>
     )
 }
 
-export default Login
+export default Register
