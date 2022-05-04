@@ -30,6 +30,16 @@
         border-radius: $border-radius;
     }
 
+    svg{
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: rgba(0, 0 ,0 ,0.5);
+        border-radius: 20px;
+    }
+
+
+
     @media (hover: hover) and (pointer: fine) {
         &:hover::before {
             opacity: 0.8;
@@ -37,6 +47,10 @@
 
         &:hover .btn {
             transform: translate(-50%, -50%) scale(1);
+        }
+
+        &:hover svg {
+            opacity: 0.5;
         }
     }
 }

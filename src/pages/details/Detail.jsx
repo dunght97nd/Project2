@@ -9,6 +9,7 @@ import CastList from './CastList';
 import VideoList from './VideoList';
 
 import MovieList from '../../components/movie-list/MovieList';
+import Pie from '../../components/progress-circle/Pie';
 
 const Detail = () => {
 
@@ -19,6 +20,9 @@ const Detail = () => {
     useEffect(() => {
         const getDetail = async () => {
             const response = await tmdbApi.detail(category, id, { params: {} });
+
+            console.log(response);
+
             setItem(response);
             window.scrollTo(0, 0);
         }
@@ -33,11 +37,17 @@ const Detail = () => {
                         <div className="banner" style={{ backgroundImage: `url(${apiConfig.originalImage(item.backdrop_path || item.poster_path)})` }}></div>
                         <div className="mb-3 movie-content container">
                             <div className="movie-content__poster">
-                                <div className="movie-content__poster__img" style={{ backgroundImage: `url(${apiConfig.originalImage(item.poster_path || item.backdrop_path)})` }}></div>
+                                <div className="movie-content__poster__img"
+                                    style={{ backgroundImage: `url(${apiConfig.originalImage(item.poster_path || item.backdrop_path)})` }}>
+                                </div>
                             </div>
                             <div className="movie-content__info">
                                 <h1 className="title">
-                                    {item.title || item.name}
+                                    {
+                                        item.title || item.name
+                                        // `${item.title} (${item.release_date.slice(0, 4)})`
+                                        // || `${item.name} (${item.release_date.slice(0, 4)})`
+                                    }
                                 </h1>
 
                                 <div className="genres">
@@ -47,8 +57,14 @@ const Detail = () => {
                                         ))
                                     }
                                 </div>
+                                <Pie percentage={item.vote_average * 10 || 88} colour="#ff0000" />
 
-                                <p className="overview">{item.overview}</p>
+                                <div className="cast">
+                                    <div className="section__header">
+                                        <h2>Overview</h2>
+                                    </div>
+                                    <p className="overview">{item.overview}</p>
+                                </div>
                                 <div className="cast">
                                     <div className="section__header">
                                         <h2>Casts</h2>

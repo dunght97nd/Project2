@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay } from 'swiper';
+import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
+
 
 import Button, { OutlineButton } from '../button/Button';
 import Modal, { ModalContent } from '../modal/Modal';
@@ -9,13 +10,17 @@ import Modal, { ModalContent } from '../modal/Modal';
 import tmdbApi, { category, movieType } from '../../api/tmdbApi';
 import apiConfig from '../../api/apiConfig';
 
-import './hero-slide.scss';
-
 import { useNavigate } from 'react-router-dom';
+
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
+import 'swiper/components/pagination/pagination.min.css';
+
+import './hero-slide.scss';
 
 const HeroSlide = () => {
 
-    SwiperCore.use([Autoplay]);
+    SwiperCore.use([Autoplay, Pagination]);
 
     const [movieItems, setMovieItems] = useState([]);
 
@@ -36,15 +41,18 @@ const HeroSlide = () => {
     return (
         <div className="hero-slide">
             <Swiper
-                modules={[Autoplay]}
+                modules={[Autoplay, Pagination]}
                 grabCursor={true}
                 spaceBetween={0}
                 slidesPerView={1}
                 autoplay={{
                     delay: 3000,
-                    // disableOnInteraction: false,
+                    disableOnInteraction: false,
                 }}
                 loop={true}
+                pagination={{
+                    clickable: true,
+                }}
             >
                 {
                     movieItems.map((item, index) => (
