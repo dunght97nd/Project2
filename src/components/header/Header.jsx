@@ -23,6 +23,16 @@ const headerNav = [
         section: 'tv',
         path: '/tv'
     },
+    {
+        display: 'People',
+        section: 'person',
+        path: '/person'
+    },
+    {
+        display: 'More',
+        section: 'more',
+        path: '/more'
+    },
 
 ];
 

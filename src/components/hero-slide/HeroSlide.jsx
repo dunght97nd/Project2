@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
+import SwiperCore, { Autoplay, Pagination } from 'swiper';
 
 
 import Button, { OutlineButton } from '../button/Button';
@@ -26,11 +26,14 @@ const HeroSlide = () => {
 
     useEffect(() => {
         const getMovies = async () => {
-            const params = { page: 2 }
+            const params = { page: 8 }
             try {
                 const response = await tmdbApi.getMoviesList(movieType.popular, { params });
-                setMovieItems(response.results.slice(1, 6));
+
+                setMovieItems(response.results.slice(0, 5));
+
                 console.log(response);
+
             } catch {
                 console.log('error');
             }

@@ -1,6 +1,3 @@
-import 'swiper/swiper.min.css';
-import './assets/boxicons-2.0.7/css/boxicons.min.css';
-import './App.scss';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -12,6 +9,9 @@ import Login from './pages/login/Login';
 import Register from './pages/login/Register';
 
 // import Config from './config/Config';
+import 'swiper/swiper.min.css';
+import './assets/boxicons-2.0.7/css/boxicons.min.css';
+import './App.scss';
 
 function App() {
     return (
@@ -32,6 +32,7 @@ function App() {
                     <Route path=":category/search/:keyword" element={<Catalog />} />
                     <Route path=":category/:id" element={<Detail />} />
                     <Route path=":category" element={<Catalog />} />
+
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Register />} />
 

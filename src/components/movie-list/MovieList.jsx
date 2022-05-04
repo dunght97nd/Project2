@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 
-import SwiperCore, { Navigation } from 'swiper';
+// import SwiperCore, { Navigation } from 'swiper';
 import { SwiperSlide, Swiper } from 'swiper/react';
 
 // import { Link } from 'react-router-dom';
@@ -35,6 +35,11 @@ const MovieList = props => {
                     case category.movie:
                         response = await tmdbApi.getMoviesList(props.type, { params });
                         break;
+                    //Get data people
+                    case category.person:
+                        response = await tmdbApi.getPeopleList(props.type, { params });
+                        break;
+
                     default:
                         response = await tmdbApi.getTvList(props.type, { params });
                 }

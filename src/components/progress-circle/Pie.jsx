@@ -21,7 +21,7 @@ const Circle = ({ colour, pct }) => {
             strokeDasharray={circ}
             strokeDashoffset={pct ? strokePct : 0}
             strokeLinecap="round"
-        ></circle>
+        ></circle >
     );
 };
 

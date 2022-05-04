@@ -5,6 +5,8 @@ import { useParams } from 'react-router';
 import tmdbApi from '../../api/tmdbApi';
 import apiConfig from '../../api/apiConfig';
 
+import { Link } from 'react-router-dom';
+
 const CastList = props => {
 
     const { category } = useParams();
@@ -18,17 +20,19 @@ const CastList = props => {
         }
         getCredits();
     }, [category, props.id]);
+
     return (
         <div className="casts">
             {
                 casts.map((item, i) => (
-                    <div key={i} className="casts__item">
+                    <Link to={`/person/${item.id}`} key={i} className="casts__item">
                         <div className="casts__item__img" style={{ backgroundImage: `url(${apiConfig.w500Image(item.profile_path)})` }}></div>
                         <p className="casts__item__name">{item.name}</p>
-                    </div>
+                    </Link>
                 ))
             }
         </div>
+
     );
 }
 
