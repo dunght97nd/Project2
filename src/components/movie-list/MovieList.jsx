@@ -43,6 +43,7 @@ const MovieList = props => {
                     default:
                         response = await tmdbApi.getTvList(props.type, { params });
                 }
+
             } else {
                 response = await tmdbApi.similar(props.category, props.id);
             }

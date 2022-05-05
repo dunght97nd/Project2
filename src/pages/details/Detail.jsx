@@ -5,7 +5,7 @@ import tmdbApi from '../../api/tmdbApi';
 import apiConfig from '../../api/apiConfig';
 
 import './detail.scss';
-import CastList from './CastList';
+import CastList, { MovieCredits } from './CastList';
 import VideoList from './VideoList';
 
 import MovieList from '../../components/movie-list/MovieList';
@@ -96,13 +96,11 @@ const Detail = () => {
                                         <h3>Biography</h3>
                                         <p className="overview">{item.biography}</p>
                                     </div>
-
-
                                 </div>
 
                             }
                         </div>
-                        {!(category === 'person') &&
+                        {!(category === 'person') ?
                             <div className="container">
                                 <div className="section mb-3">
                                     <VideoList id={item.id} />
@@ -111,7 +109,24 @@ const Detail = () => {
                                     <div className="section__header mb-2">
                                         <h2>Similar</h2>
                                     </div>
+
                                     <MovieList category={category} type="similar" id={item.id} />
+
+                                </div>
+                            </div> :
+                            <div className="container">
+                                <div className="section mb-3">
+                                    <div className="section__header mb-2">
+                                        <h2>Movie Credits</h2>
+                                    </div>
+                                    <MovieCredits id={item.id} cate='movie' />
+                                </div>
+
+                                <div className="section mb-3">
+                                    <div className="section__header mb-2">
+                                        <h2>TV Credits</h2>
+                                    </div>
+                                    <MovieCredits id={item.id} cate='tv' />
                                 </div>
                             </div>
                         }

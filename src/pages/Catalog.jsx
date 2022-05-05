@@ -17,7 +17,10 @@ const Catalog = () => {
     return (
         <>
             <PageHeader>
-                {category === cate.movie ? 'Movies' : 'TV Series'}
+                {
+                    (category === cate.movie ?
+                        'Movies' : category === cate.person ? 'People' : 'Tv Series')
+                }
             </PageHeader>
 
             <div className="container">

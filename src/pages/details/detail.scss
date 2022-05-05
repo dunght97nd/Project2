@@ -104,6 +104,7 @@
             padding-top: 160px;
             margin-bottom: 0.5rem;
             border-radius: 0.5rem;
+
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -113,8 +114,40 @@
             font-size: 1rem;
         }
     }
+}
 
-    
+.movies{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+
+    &__item {
+        
+        &__bg {
+            overflow: hidden;
+            border-radius: 1rem;
+            &__img {
+                padding-top: 140%;
+                border-radius: 1rem;
+
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                transition: linear 0.2s;
+            }
+        }
+
+        &__name {
+            font-size: 1.2rem;
+            text-align: center;
+
+            margin-top: 1rem;
+        }
+
+        &:hover &__bg__img{
+            transform: scale(1.2);
+        }
+    }
 }
 
 .video {
