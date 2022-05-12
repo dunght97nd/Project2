@@ -1,14 +1,17 @@
 import React from 'react'
 import PageHeader from '../../components/page-header/PageHeader';
 import './login.scss';
-import bg from '../../assets/footer-bg.jpg';
+// import bg from '../../assets/footer-bg.jpg';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from "@hookform/error-message";
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
+import { TabTitle } from '../../ultils/GeneralFunctions';
 
 const Register = () => {
+    TabTitle('The Movie Database | Register');
+
     // const { register, handleSubmit, formState: { errors } } = useForm();
     const {
         register,

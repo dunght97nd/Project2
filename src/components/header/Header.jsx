@@ -44,6 +44,7 @@ const Header = () => {
 
     const [activeIndex, setActiveIndex] = useState(0)
     const location = useLocation()
+
     useEffect(() => {
         const curPath = window.location.pathname.split('/')[1]
         const activeItem = headerNav.findIndex(item => item.section === curPath)
@@ -75,7 +76,7 @@ const Header = () => {
                 <div className="logo">
                     <Link to="/">
                         <img src={logo} alt="" />
-                        <span>M</span>ovies
+                        <span>M</span>ovieDB
                     </Link>
                 </div>
 

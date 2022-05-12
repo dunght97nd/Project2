@@ -8,7 +8,12 @@ import MovieList from '../components/movie-list/MovieList';
 
 import { category, movieType, tvType } from '../api/tmdbApi';
 
+import { TabTitle } from '../ultils/GeneralFunctions';
+
 const Home = () => {
+
+    TabTitle(`The Movie Database`);
+
     return (
         <>
             <HeroSlide />

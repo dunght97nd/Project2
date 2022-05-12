@@ -46,6 +46,7 @@ const MovieGrid = props => {
             }
 
             console.log(response);
+
             setItems(response.results);
             setTotalPage(response.total_pages);
         }

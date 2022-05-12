@@ -26,13 +26,13 @@ const HeroSlide = () => {
 
     useEffect(() => {
         const getMovies = async () => {
-            const params = { page: 8 }
+            const params = { page: 1 }
             try {
-                const response = await tmdbApi.getMoviesList(movieType.popular, { params });
+                const response = await tmdbApi.getMoviesList(movieType.now_playing, { params });
 
                 setMovieItems(response.results.slice(0, 5));
 
-                console.log(response);
+                // console.log(response);
 
             } catch {
                 console.log('error');
@@ -50,7 +50,7 @@ const HeroSlide = () => {
                 slidesPerView={1}
                 autoplay={{
                     delay: 3000,
-                    disableOnInteraction: false,
+                    // disableOnInteraction: false,
                 }}
                 loop={true}
                 pagination={{
@@ -104,6 +104,7 @@ const HeroSlideItem = props => {
             style={{ backgroundImage: `url(${background})` }}
         >
             <div className="hero-slide__item__content container">
+
                 <div className="hero-slide__item__content__info">
                     <h2 className="title">{item.title}</h2>
                     <div className="overview">{item.overview}</div>
@@ -116,6 +117,7 @@ const HeroSlideItem = props => {
                         </OutlineButton>
                     </div>
                 </div>
+
                 <div className="hero-slide__item__content__poster">
                     <img src={apiConfig.w500Image(item.poster_path)} alt="" />
                 </div>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-
 import { useParams } from 'react-router';
 
 import tmdbApi from '../../api/tmdbApi';
 import apiConfig from '../../api/apiConfig';
 
 import { Link } from 'react-router-dom';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 const CastList = props => {
 
@@ -16,21 +17,31 @@ const CastList = props => {
     useEffect(() => {
         const getCredits = async () => {
             const response = await tmdbApi.credits(category, props.id);
-            setCasts(response.cast.slice(0, 6));
+            setCasts(response.cast);
         }
         getCredits();
     }, [category, props.id]);
 
     return (
         <div className="casts">
-            {
-                casts.map((item, i) => (
-                    <Link to={`/person/${item.id}`} key={i} className="casts__item">
-                        <div className="casts__item__img" style={{ backgroundImage: `url(${apiConfig.w500Image(item.profile_path)})` }}></div>
-                        <p className="casts__item__name">{item.name}</p>
-                    </Link>
-                ))
-            }
+            <Swiper
+                grabCursor={true}
+                spaceBetween={10}
+                slidesPerView={'auto'}
+            >
+                {
+                    casts.map((item, i) => (
+                        item.profile_path && <SwiperSlide key={i}>
+                            <Link to={`/person/${item.id}`} key={i} className="casts__item">
+                                <div className="casts__item__bg">
+                                    <div className="casts__item__bg__img" style={{ backgroundImage: `url(${apiConfig.w500Image(item.profile_path)})` }}></div>
+                                </div>
+                                <p className="casts__item__name">{item.name}</p>
+                            </Link>
+                        </SwiperSlide>
+                    ))
+                }
+            </Swiper>
         </div>
 
     );
@@ -38,7 +49,7 @@ const CastList = props => {
 
 export const MovieCredits = props => {
 
-    const category = props.cate;
+    const category = props.type;
 
     const [movies, setMovies] = useState([]);
 
@@ -46,11 +57,11 @@ export const MovieCredits = props => {
         const getCredits = async () => {
             const response = await tmdbApi.movie_credits(category, props.id);
 
-            console.log(response.cast);
+            // console.log(response.cast);
             setMovies(response.cast);
         }
         getCredits();
-    }, [props.id]);
+    }, [category, props.id]);
 
     return (
         <div className="movies">

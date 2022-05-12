@@ -31,14 +31,16 @@ const MovieList = props => {
             const params = {};
 
             if (props.type !== 'similar') {
+
                 switch (props.category) {
                     case category.movie:
                         response = await tmdbApi.getMoviesList(props.type, { params });
                         break;
+
                     //Get data people
-                    case category.person:
-                        response = await tmdbApi.getPeopleList(props.type, { params });
-                        break;
+                    // case category.person:
+                    //     response = await tmdbApi.getPeopleList(props.type, { params });
+                    //     break;
 
                     default:
                         response = await tmdbApi.getTvList(props.type, { params });
@@ -46,11 +48,13 @@ const MovieList = props => {
 
             } else {
                 response = await tmdbApi.similar(props.category, props.id);
+
             }
             setItems(response.results);
+            // console.log(response);
         }
         getList();
-    }, []);
+    }, [props.category, props.type, props.id]); //
 
     return (
         <div className="movie-list">
