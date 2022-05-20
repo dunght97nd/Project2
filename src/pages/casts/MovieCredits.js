@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import tmdbApi from '../../api/tmdbApi';
-import apiConfig from '../../api/apiConfig';
 
-import { Link } from 'react-router-dom';
 import MovieCard from '../../components/movie-card/MovieCard';
 
 const MovieCredits = props => {
