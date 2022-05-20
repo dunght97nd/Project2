@@ -7,11 +7,13 @@ import Home from './pages/Home';
 import MainLayout from './layout/MainLayout';
 import Login from './pages/login/Login';
 import Register from './pages/login/Register';
+import Casts from './pages/casts/Casts';
 
 // import Config from './config/Config';
 import 'swiper/swiper.min.css';
 import './assets/boxicons-2.0.7/css/boxicons.min.css';
 import './App.scss';
+import CastDetail from './pages/casts/CastDetail';
 
 function App() {
     return (
@@ -29,9 +31,14 @@ function App() {
             <Routes>
                 <Route path="/" element={<MainLayout />}>
                     <Route index element={<Home />} />
+
+                    <Route path=":category" element={<Catalog />} />
                     <Route path=":category/search/:keyword" element={<Catalog />} />
                     <Route path=":category/:id" element={<Detail />} />
-                    <Route path=":category" element={<Catalog />} />
+
+                    <Route path="person" element={<Casts />} />
+                    <Route path="person/:id" element={<CastDetail />} />
+
 
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Register />} />

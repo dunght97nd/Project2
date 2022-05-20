@@ -7,7 +7,7 @@ import MovieCard from '../movie-card/MovieCard';
 import Button, { OutlineButton } from '../button/Button';
 import Input from '../input/Input'
 
-import tmdbApi, { category, movieType, personType, tvType } from '../../api/tmdbApi';
+import tmdbApi, { category, movieType, tvType } from '../../api/tmdbApi';
 
 const MovieGrid = props => {
 
@@ -26,14 +26,8 @@ const MovieGrid = props => {
                 switch (props.category) {
                     //Get data movie
                     case category.movie:
-                        response = await tmdbApi.getMoviesList(movieType.upcoming, { params });
+                        response = await tmdbApi.getMoviesList(movieType.popular, { params });
                         break;
-
-                    //Get data people
-                    case category.person:
-                        response = await tmdbApi.getPeopleList(personType.popular, { params });
-                        break;
-
                     //Get data tvList
                     default:
                         response = await tmdbApi.getTvList(tvType.popular, { params });
@@ -61,12 +55,9 @@ const MovieGrid = props => {
             };
             switch (props.category) {
                 case category.movie:
-                    response = await tmdbApi.getMoviesList(movieType.upcoming, { params });
+                    response = await tmdbApi.getMoviesList(movieType.popular, { params });
                     break;
-                //Get data people
-                case category.person:
-                    response = await tmdbApi.getPeopleList(personType.popular, { params });
-                    break;
+
                 default:
                     response = await tmdbApi.getTvList(tvType.popular, { params });
             }
@@ -84,19 +75,7 @@ const MovieGrid = props => {
     return (
         <>
             <div className="section mb-3">
-                {/* {
-                    props.category === 'tv' &&
-                    < MovieSearch category={props.category} keyword={keyword} />
-                }
-                {
-                    props.category === 'movie' &&
-                    < MovieSearch category={props.category} keyword={keyword} />
-                } */}
-                {
-                    !(props.category === 'person') &&
-                    < MovieSearch category={props.category} keyword={keyword} />
-                }
-
+                < MovieSearch category={props.category} keyword={keyword} />
             </div>
             <div className="movie-grid">
                 {

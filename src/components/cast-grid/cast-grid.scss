@@ -1,6 +1,6 @@
 @use "../../scss/" as *;
 
-.movie-grid {
+.cast-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
@@ -14,9 +14,16 @@
         text-align: center;
     }
 
+    h3{
+        font-size: 1.2rem;
+        text-align: center;
+
+        margin-top: 1rem;
+
+    }
 }
 
-.movie-search {
+.cast-search {
     position: relative;
     width: 100%;
     // max-width: 500px;

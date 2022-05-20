@@ -1,0 +1,39 @@
+@use "../../scss/" as *;
+
+.cast-card {
+    overflow: hidden;
+    border-radius: $border-radius;
+
+    &__bg {
+        position: relative;
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding-top: 160%;
+        border-radius: $border-radius;
+        transition: linear 0.2s;
+    } 
+    
+    &:hover &__bg{
+        transform: scale(1.1);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover::before {
+            opacity: 0.8;
+        }
+
+        &:hover .btn {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        &:hover .circular__progressbar__char{
+            opacity: 0.5;
+        }
+    }
+}
+
+h3{
+    font-size: 1.2rem;
+    text-align: center;
+}

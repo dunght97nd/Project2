@@ -28,7 +28,7 @@
     }
 }
 
-.movie-content {
+.cast-content {
     @include flex(flex-start, flex-start);
     max-width: 1260px;
     position: relative;
@@ -155,7 +155,7 @@
     }
 }
 
-.movies{
+.casts{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 20px;
